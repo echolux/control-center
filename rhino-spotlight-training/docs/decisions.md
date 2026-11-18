@@ -9,6 +9,7 @@ Record who approved and the date. Approved items are not redesigned without a lo
 |---|---|---|---|
 | Phase 1 planning package | PROPOSED | — | — |
 | Pilot storyboard (Lesson 01) | PROPOSED | — | — |
+| Render pipeline test (`RenderTest`, cloud) | PASSED (fallback browser) | — | 2026-11-18 |
 | Lesson 01 technical review | NOT STARTED | — | — |
 | Lesson 01 final render | NOT STARTED | — | — |
 
@@ -24,6 +25,9 @@ Record who approved and the date. Approved items are not redesigned without a lo
 | D-006 | Pilot scope: what a followspot is, where it's operated, core controls, cue basics. No chopper/trim, lamp, or power-up procedure. | PROPOSED | Those need model-specific and safety review |
 | D-007 | Narration: record/ generate a scratch track first to lock timing; final VO chosen after review | PROPOSED | Voice source is an open question (below) |
 | D-008 | Project lives in `rhino-spotlight-training/` inside `control-center` for now | PROPOSED | Recommend moving to its own repository before Phase 2 (unrelated to the dashboard app) |
+| D-010 | Remotion app lives in `rhino-spotlight-training/video/`, own `package.json`, independent of the dashboard app | APPROVED (owner request 2026-11-18) | Planning files untouched |
+| D-011 | Official Remotion Agent Skills installed project-local in `video/.claude/skills/`, pinned via `skills-lock.json` | APPROVED (owner request 2026-11-18) | |
+| D-012 | Cloud renders use Remotion's downloaded browser when `remotion.media` is reachable; otherwise the container's pre-installed headless shell (`render:*:cloud` scripts) | PROPOSED | Fallback is Chrome 157 vs Remotion's 158 |
 | D-009 | Brand colors/logo are placeholders until Rhino brand guidelines are supplied | PROPOSED | Don't invent Rhino branding |
 
 ## Open questions (need owner answers)

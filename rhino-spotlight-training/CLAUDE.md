@@ -17,9 +17,13 @@ repository-root `AGENTS.md` do **not** apply here.
 
 ## Current phase
 
-**Phase 1 — planning. Awaiting review.** Do not scaffold Remotion, install
-dependencies, or write animation code until `docs/decisions.md` records Phase 1 as
-APPROVED.
+**Phase 1 — planning. Awaiting review.** The owner authorized a render-pipeline test
+(2026-11-18): `video/` is scaffolded with a 5-second `RenderTest` composition only.
+Do not build lesson scenes until `docs/decisions.md` records Phase 1 as APPROVED.
+
+Remotion app: `video/` (see `video/README.md` for render commands, cloud and Mac).
+Official Remotion Agent Skills live in `video/.claude/skills/`; follow them when
+writing Remotion code.
 
 ## Rules
 
