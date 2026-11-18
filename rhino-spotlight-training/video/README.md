@@ -35,23 +35,35 @@ npm run studio          # interactive preview at http://localhost:3000
 
 ## Render in a Claude Code cloud session
 
-Remotion's browser download host (`remotion.media`) must be allowed in the
-environment's network settings. If it isn't, use the Chromium headless shell
-pre-installed in the container:
+Use the `control-center` cloud environment. It allows `remotion.media` (Remotion's
+browser download) and `www.remotion.dev` (Remotion docs), and its setup script runs
+`npm ci` plus `remotion browser ensure` here when a fresh container starts.
+
+Remotion's browser downloader ignores the container's HTTPS proxy unless Node is told
+to use it. If the browser is missing, run:
 
 ```bash
-npm ci
+NODE_USE_ENV_PROXY=1 npx remotion browser ensure
+npm run render:test
+npm run still:test
+```
+
+Fallback if `remotion.media` is unreachable: use the container's pre-installed
+Chromium headless shell (Chrome for Testing 157, one version behind Remotion's 158):
+
+```bash
 export REMOTION_BROWSER=$(find /opt/pw-browsers -name chrome-headless-shell -type f | head -1)
 npm run render:test:cloud
 npm run still:test:cloud
 ```
 
-The fallback browser (Chrome for Testing 157) is one major version behind the one
-Remotion 4.0.544 downloads (158). It rendered the test correctly, but the official
-Remotion browser is preferred for lesson renders.
+## Verified results (2026-11-18, cloud container)
 
-## Verified result (2026-11-18, cloud container)
+| Render | Browser | Result |
+|---|---|---|
+| `RenderTest` MP4 | Remotion headless shell 158 (official) | H.264, 1920×1080, 30 fps, 150 frames, 5.00 s, yuv420p, ~7 s wall time |
+| `RenderTest` PNG, frame 90 | Remotion headless shell 158 | OK |
+| `RenderTest` MP4 + PNG | Pre-installed Chrome 157 (fallback) | OK (yuvj420p pixel format) |
 
-`RenderTest` rendered with the fallback browser: H.264, 1920×1080, 30 fps,
-150 frames, 5.00 s, about 10 s wall time. PNG still at frame 90 rendered.
-Not yet verified: rendering with Remotion's own downloaded browser, and rendering on a Mac.
+Not yet verified: rendering on a Mac, and the environment setup script in a fresh
+session (it was run manually here and worked).
